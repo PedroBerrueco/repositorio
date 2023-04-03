@@ -1,0 +1,23 @@
+CREATE DATABASE ventas;
+USE ventas;
+
+CREATE TABLE CLIENTE(
+DNI VARCHAR(10),
+Nombre VARCHAR(50),
+PRIMARY KEY(DNI)
+)ENGINE=InnoDB;
+
+CREATE TABLE PRODUCTO(
+Cod_producto INTEGER,
+Nombre VARCHAR(10),
+PRIMARY KEY(Cod_producto)
+)ENGINE=InnoDB;
+
+
+CREATE TABLE VENTA(
+DNI VARCHAR(10),
+Cod_producto INTEGER,
+PRIMARY KEY(DNI, Cod_producto),
+FOREIGN KEY (DNI) references CLIENTE(DNI),
+FOREIGN KEY (Cod_producto) references PRODUCTO(Cod_producto)
+)ENGINE=InnoDB;

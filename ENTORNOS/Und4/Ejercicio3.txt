@@ -1,0 +1,10 @@
+
+
+3) Complejidad ciclomática
+La complejidad ciclomática V(G) puede calcularse de varias formas:
+1. V(G): Número predicado + 1.  Los nodos predicado son CUATRO, el 1,2, 3 Y 4. Por lo que 4+1 = 5.
+2. V(G): Aristas - Nodos + 2. Tenemos 14 aristas y 11 nodos. Por lo que 14-11+2 = 5.
+3. V(G): Número de regiones Según el grafo tenemos 5 regiones.
+
+En todos los casos la complejidad ciclomática es de 5.
+
