@@ -80,3 +80,36 @@ BEGIN
         END IF;
 END;
 /
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+-- EJercicio C
+
+/*
+Para completar la actividad he creado las consultas siguientes que ejecutaré antes y despues de
+lanzar el PLSQL:
+*/
+
+-- Productos sobre los que actuara PL/SQL
+SELECT Cod_Producto, Nombre FROM producto WHERE ind_situ = 'B';
+
+--De los productos mostrados arriba, se especifican los incluidos en algún menú.
+SELECT * FROM menu_producto WHERE COD_PRODUCTO IN (SELECT Cod_Producto FROM producto
+WHERE ind_situ = 'B');
+
+-- Productos de alta en la tabla hist_producto
+SELECT * FROM HIST_PRODUCTO;
+
+--Lanzamos PL/SQL
+
+-- Productos sobre los que actuó PL/SQL (Siguen siendo los mismos)
+SELECT Cod_Producto, Nombre FROM producto WHERE ind_situ = 'B';
+
+--De los productos mostrados arriba, se especifican los incluidos en algún menú. (Ya no quedaninguno).
+SELECT * FROM menu_producto WHERE COD_PRODUCTO IN (SELECT Cod_Producto FROM producto
+WHERE ind_situ = 'B');
+
+-- Productos de alta en la tabla hist_producto. (Ahora aparecen los 3).
+SELECT * FROM HIST_PRODUCTO;
+
+
