@@ -1,0 +1,11 @@
+
+
+CLIENTES (Numero(PK), DNI, Nombre, Apellido1, Apellido2, Número_Cliente_Recom(FK))
+
+NO SOCIOS (Número_Cliente(PK,FK))
+
+SOCIOS (Número_Cliente(PK,FK),Fecha_socio)
+
+PELICULAS (Código(PK), Título, Precio, Número_cliente(FK))
+
+ALQUILAN (Número_Cliente(PK,FK), Código_Pelicula(PK,FK), Fecha_alquiler, Fecha_devolucón)

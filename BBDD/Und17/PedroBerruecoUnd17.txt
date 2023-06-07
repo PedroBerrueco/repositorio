@@ -1,0 +1,76 @@
+1. Inserta tu película favorita en la base de datos (con todos sus campos).
+		
+		db.favoritas.insertOne([ { título: "The imitation game", nota: 10, director: ["Lana Wachowski", "Lilly Wachowski"], intérpretes: ["Benedict Cumberbatch","Keira Knightley", "Mark Strong"], género: "Bélico/Drama", año: 2014, minutos: 114, presupuesto: 140000000 } ])
+		
+2. Añade un nuevo campo con su valor (el que quieras) a la película “Jungla de cristal”.
+		
+		db.favoritas.update({"título": "Jungla de cristal"}, {$set: {"original_title": "Die Hard"}})
+		
+3. Modifica el año de la película “The Matrix” a 2000.
+		
+		db.favoritas.update({"título" : "The Matrix"}, {$set: {"año": 2000}})
+		
+4. Elimina el campo “presupuesto” de las películas que tengan una duración de más de 105minutos.
+		
+		 db.favoritas.updateMany({"minutos": {$gt: 105}}, {$unset: {"presupuesto": ""}})
+		 
+5. Lista todos los campos de las películas cuyo título comience con The.
+		
+		db.favoritas.find({"título": /^The/})
+		
+6. Lista solo el título de las películas con una nota mayor de 8 y una duración de menos de 120 minutos.
+
+		db.favoritas.find(
+		{
+			$and: [
+			{"nota": {$gt: 8}},
+			{"minutos": {$lt: 120}}
+		  ]
+		}, 
+		{
+			"título": 1, "_id": 0
+		}
+		)
+
+7. Lista los títulos de las películas donde actúa Arnold Schwarzenegger.
+
+		db.favoritas.find(
+		{ "intérpretes": { $in: ["Arnold Schwarzenegger"] } }, { "título": 1, "_id": 0 }
+		)
+
+8. Muestra el título de las películas con nota menor o igual de 8, o donde actúe Bruce Willis.
+
+		db.favoritas.find(
+		  {
+			$or: [
+			  {"nota": {$lte: 8}},
+			  {"intérpretes": { $in: ["Bruce Willis"]}}
+			]
+		  },
+		  { "título": 1, "_id": 0 }
+		)
+
+
+9. Muestra todos los campos de las películas del director John McTiernan que: tengan unaduración de más de 120 minutos o que tengan un presupuesto de menos de 20000000.
+		
+		db.favoritas.find(
+		  {
+			$and: 
+				[
+					{"director" : "John McTiernan"}
+					,
+					{
+						$or: [
+						{"minutos": {$gt: 120}},
+						{"presupuesto": {$lt: 20000000}}
+						]
+					}
+				]
+			
+		  },
+		  {}
+		)
+		
+10. Elimina la película que menos te guste de entre las que hay en la base de datos.
+
+		db.favoritas.deleteOne({"título": "Déjame salir"})
